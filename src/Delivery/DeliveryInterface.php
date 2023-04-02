@@ -9,8 +9,8 @@ interface DeliveryInterface {
 
   public function getDeliveryInformation(): array;
 
-  public function delyveryCoast(): float;
+  public function deliveryCoast(): float;
 
-  public function delyveryDate(): string;
+  public function deliveryDate(): string;
 
 }

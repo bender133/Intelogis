@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Root\Html\Preparer\DelyveryPreparer;
+use Root\Html\Preparer\DeliveryPreparer;
 use Root\Html\Presenter\DeliveryPresenter;
 use Root\Html\Serializer\JsonSerializer;
 
@@ -10,11 +10,10 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
 //todo: Предполагается что данные приходят из внешнего источника (брокер/база/API). Как это происходит решено упустить, так как это вне контекста задачи
 
-$deliveriesJson =
-  <<<JSON
+$deliveriesJson =<<<JSON
 [
     {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "7383400000000",
     "targetKladr": "5318300000000",
     "weight": 15.02,
@@ -23,7 +22,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "4642900000000",
     "targetKladr": "7810700000000",
     "weight": 48.06,
@@ -32,7 +31,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "1700000100000",
     "targetKladr": "5246300000000",
     "weight": 32.14,
@@ -41,7 +40,7 @@ $deliveriesJson =
     "error": "Invalid input data"
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "7013700000000",
     "targetKladr": "1431200000000",
     "weight": 23.55,
@@ -50,7 +49,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "5200700000000",
     "targetKladr": "7600000400000",
     "weight": 17.31,
@@ -59,7 +58,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "3128200000000",
     "targetKladr": "2600000600000",
     "weight": 39.43,
@@ -68,7 +67,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "6902200000000",
     "targetKladr": "1013800000000",
     "weight": 7.61,
@@ -77,7 +76,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "7013700000000",
     "targetKladr": "5832000000000",
     "weight": 5.15,
@@ -86,7 +85,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://fast-delyvery.ru",
+    "base_url": "http://fast-delivery.ru",
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
     "weight": 27.87,
@@ -95,7 +94,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -105,7 +104,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -115,7 +114,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -125,7 +124,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -135,7 +134,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -145,7 +144,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -155,7 +154,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -165,7 +164,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -175,7 +174,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -185,7 +184,7 @@ $deliveriesJson =
     "error": ""
   },
   {
-    "base_url": "http://slow-delyvery.ru",
+    "base_url": "http://slow-delivery.ru",
     "base_price": 150,
     "sourceKladr": "4725700000000",
     "targetKladr": "7720400000000",
@@ -199,7 +198,10 @@ JSON;
 
 $deliveries = json_decode($deliveriesJson, TRUE);
 
-$result = new DeliveryPresenter(new JsonSerializer(), DelyveryPreparer::create()); // все транспортные
-$resultFilter = new DeliveryPresenter(new JsonSerializer(), DelyveryPreparer::create(['http://slow-delyvery.ru'])); // одна, либо тут любые выбранные
-echo $result->present($deliveries);
+$result = new DeliveryPresenter(new JsonSerializer(), DeliveryPreparer::create()); // все транспортные
+$resultFilter = new DeliveryPresenter(new JsonSerializer(), DeliveryPreparer::create(['http://slow-delivery.ru'])); // одна, либо тут любые выбранные
+
+header('Content-Type: application/json');
+
+//echo $result->present($deliveries);
 echo $resultFilter->present($deliveries);

@@ -8,7 +8,7 @@ namespace Root\Html\Preparer;
 use Root\Html\Delivery\DeliveryFactory;
 use Root\Html\Delivery\DeliveryFactoryInterface;
 
-class DelyveryPreparer implements PreparerInterface {
+class DeliveryPreparer implements PreparerInterface {
 
   /**
    * @var DeliveryFactoryInterface
@@ -36,8 +36,8 @@ class DelyveryPreparer implements PreparerInterface {
   }
 
 
-  public static function create(array $targetDelyvery = []): self {
-    return new self(new DeliveryFactory(), $targetDelyvery);
+  public static function create(array $targetdelivery = []): self {
+    return new self(new DeliveryFactory(), $targetdelivery);
   }
 
 }

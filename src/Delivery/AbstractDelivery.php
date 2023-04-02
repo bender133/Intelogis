@@ -15,8 +15,8 @@ abstract class AbstractDelivery implements DeliveryInterface, LoggerInterface {
   public function getDeliveryInformation(): array {
     return
       [
-        'price' => $this->delyveryCoast(),
-        'date' => $this->delyveryDate(),
+        'price' => $this->deliveryCoast(),
+        'date' => $this->deliveryDate(),
         'error' => $this->getErrorMessage(),
       ];
   }

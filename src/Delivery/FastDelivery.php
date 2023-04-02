@@ -19,8 +19,6 @@ class FastDelivery extends AbstractDelivery {
 
   const CLOSING_TIME = 18;
 
-  const DELIVERY_NAME = 'fast';
-
   public function __construct(float $price, int $period, string $error) {
 
     $this->price = $price;
@@ -28,14 +26,14 @@ class FastDelivery extends AbstractDelivery {
     $this->setErrorMessage($error);
   }
 
-  public function delyveryCoast(): float {
-    return $this->price * 2;
+  public function deliveryCoast(): float {
+    return $this->price;
   }
 
   /**
    * @throws \Exception
    */
-  public function delyveryDate(): string {
+  public function deliveryDate(): string {
 
     $startDate = new \DateTime();
     if ($startDate->format('H') >= self::CLOSING_TIME) {

@@ -22,8 +22,6 @@ class SlowDelivery extends AbstractDelivery {
    */
   private $date;
 
-  const DELIVERY_NAME = 'slow';
-
   public function __construct(float $basePrice, string $date, float $coefficient, string $error) {
 
     $this->basePrice = $basePrice;
@@ -32,14 +30,14 @@ class SlowDelivery extends AbstractDelivery {
     $this->setErrorMessage($error);
   }
 
-  public function delyveryCoast(): float {
+  public function deliveryCoast(): float {
     return $this->basePrice * $this->coefficient;
   }
 
   /**
    * @throws \Exception
    */
-  public function delyveryDate(): string {
+  public function deliveryDate(): string {
     return $this->date;
   }
 

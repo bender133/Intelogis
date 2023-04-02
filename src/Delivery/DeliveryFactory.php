@@ -11,9 +11,9 @@ use Root\Html\Logger\LoggerInterface;
 
 class DeliveryFactory implements DeliveryFactoryInterface {
 
-  const FAST_DELYVERY_URL = 'http://fast-delyvery.ru';
+  const FAST_DELIVERY_URL = 'http://fast-delivery.ru';
 
-  const SLOW_DELYVERY_URL = 'http://slow-delyvery.ru';
+  const SLOW_DELIVERY_URL = 'http://slow-delivery.ru';
 
   /**
    * @param array $data
@@ -22,9 +22,9 @@ class DeliveryFactory implements DeliveryFactoryInterface {
    */
   public function getDelivery(array $data): DeliveryInterface {
     switch ($data['base_url']) {
-      case self::FAST_DELYVERY_URL:
+      case self::FAST_DELIVERY_URL:
         return new FastDelivery($data['price'], $data['period'], $data['error']);
-      case self::SLOW_DELYVERY_URL:
+      case self::SLOW_DELIVERY_URL:
         return new SlowDelivery($data['base_price'], $data['date'], $data['coefficient'], $data['error']);
       default:
         throw new InvalidArgumentException('Неизвестный сервис доставки.');
