@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Root\Html\Delivery\DeliveryFactory;
+use Root\Html\Filter\BaseUrlFilter;
 use Root\Html\Preparer\DeliveryPreparer;
 use Root\Html\Presenter\DeliveryPresenter;
 use Root\Html\Serializer\JsonSerializer;
@@ -10,7 +12,7 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
 //todo: Предполагается что данные приходят из внешнего источника (брокер/база/API). Как это происходит решено упустить, так как это вне контекста задачи
 
-$deliveriesJson =<<<JSON
+$deliveriesJson = <<<JSON
 [
     {
     "base_url": "http://fast-delivery.ru",
@@ -197,9 +199,14 @@ $deliveriesJson =<<<JSON
 JSON;
 
 $deliveries = json_decode($deliveriesJson, TRUE);
+$filter = new BaseUrlFilter();
+$filter->setCriteria(['http://slow-delivery.ru']);
+$factory = new DeliveryFactory();
+$preparer = new DeliveryPreparer($factory);
+$preparerFilter = new DeliveryPreparer($factory, $filter);
 
-$result = new DeliveryPresenter(new JsonSerializer(), DeliveryPreparer::create()); // все транспортные
-$resultFilter = new DeliveryPresenter(new JsonSerializer(), DeliveryPreparer::create(['http://slow-delivery.ru'])); // одна, либо тут любые выбранные
+$result = new DeliveryPresenter(new JsonSerializer(), $preparer); // все транспортные
+$resultFilter = new DeliveryPresenter(new JsonSerializer(), $preparerFilter); // одна, либо тут любые выбранные
 
 header('Content-Type: application/json');
 

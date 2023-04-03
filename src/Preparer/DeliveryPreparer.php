@@ -7,6 +7,7 @@ namespace Root\Html\Preparer;
 
 use Root\Html\Delivery\DeliveryFactory;
 use Root\Html\Delivery\DeliveryFactoryInterface;
+use Root\Html\Filter\FilterInterface;
 
 class DeliveryPreparer implements PreparerInterface {
 
@@ -15,29 +16,28 @@ class DeliveryPreparer implements PreparerInterface {
    */
   private $deliveryFactory;
 
-  private $targetDelivery;
+  /**
+   * @var FilterInterface
+   */
+  private $filter;
 
-  public function __construct(DeliveryFactoryInterface $deliveryFactory, $targetDelivery) {
+
+  public function __construct(DeliveryFactoryInterface $deliveryFactory, FilterInterface $filter = NULL) {
 
     $this->deliveryFactory = $deliveryFactory;
-    $this->targetDelivery = $targetDelivery;
+    $this->filter = $filter;
   }
 
   public function prepare(array $data): array {
     $result = [];
+    $data = $this->filter ? $this->filter->filter($data) : $data;
+
     foreach ($data as $delivery) {
-      if (empty($this->targetDelivery) || in_array($delivery['base_url'], $this->targetDelivery, TRUE)) {
-        $result[] = $this->deliveryFactory->getDelivery($delivery)
-          ->getDeliveryInformation();
-      }
+      $result[] = $this->deliveryFactory->getDelivery($delivery)
+        ->getDeliveryInformation();
     }
 
     return $result;
-  }
-
-
-  public static function create(array $targetdelivery = []): self {
-    return new self(new DeliveryFactory(), $targetdelivery);
   }
 
 }
